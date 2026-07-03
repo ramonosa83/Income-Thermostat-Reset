@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Income Thermostat Reset — Creating Through Energy</title>
+<meta name="description" content="In one sitting — about half an hour — find the number your body won't let you pass, understand why it set the thermostat there, and feel it move for the first time.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-dark: #0D0D14;
+    --bg-card: #15151E;
+    --bg-elevated: #1C1C26;
+    --gold: #C8AF78;
+    --gold-deep: #8B7355;
+    --gold-light: #D8C49A;
+    --text-light: #F4F1E8;
+    --text-muted: #A8A39A;
+    --text-soft: #6B6B6B;
+    --border-subtle: rgba(200, 175, 120, 0.18);
+    --border-bright: rgba(200, 175, 120, 0.4);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Jost', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-light);
+    line-height: 1.65;
+    font-weight: 300;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+  .container-narrow { max-width: 680px; margin: 0 auto; padding: 0 24px; }
+
+  h1, h2, h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+  .eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+  em { font-style: italic; color: var(--gold-light); }
+
+  /* ===== HERO ===== */
+  .hero {
+    padding: 90px 0 80px;
+    text-align: center;
+    background:
+      radial-gradient(ellipse at top, rgba(200, 175, 120, 0.1) 0%, transparent 60%),
+      var(--bg-dark);
+  }
+  @media (max-width: 600px) { .hero { padding: 60px 0 50px; } }
+  .hero-brand {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 36px;
+  }
+  .hero-brand::before, .hero-brand::after {
+    content: ''; display: inline-block; width: 24px; height: 1px;
+    background: var(--gold); vertical-align: middle; margin: 0 14px;
+  }
+  .dial-wrap { width: min(260px, 64vw); margin: 0 auto 40px; }
+  .hero h1 {
+    font-size: clamp(38px, 6vw, 68px);
+    margin: 0 auto 28px;
+    max-width: 20ch;
+    color: var(--text-light);
+  }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero-sub {
+    font-size: clamp(17px, 2vw, 20px);
+    color: var(--text-muted);
+    max-width: 620px;
+    margin: 0 auto 40px;
+  }
+
+  .cta {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--bg-dark);
+    padding: 17px 44px;
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    border: 1px solid var(--gold);
+  }
+  .cta:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 44px rgba(200, 175, 120, 0.28);
+  }
+  .cta:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 3px; }
+  .cta-meta {
+    display: block;
+    margin-top: 18px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-soft);
+  }
+
+  /* ===== SECTIONS ===== */
+  section { padding: 80px 0; }
+  @media (max-width: 600px) { section { padding: 56px 0; } }
+  .section-divider { border-top: 1px solid var(--border-subtle); }
+
+  .letter p, .prose p {
+    font-size: 17px;
+    color: var(--text-muted);
+    margin-bottom: 22px;
+    max-width: 620px;
+  }
+  .letter p strong, .prose p strong { color: var(--text-light); font-weight: 500; }
+  .lead-line {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(24px, 3vw, 30px);
+    font-style: italic;
+    color: var(--gold-light);
+    line-height: 1.3;
+    margin: 36px 0 22px;
+  }
+
+  .domino {
+    background: var(--bg-card);
+    border: 1px solid var(--border-bright);
+    border-radius: 4px;
+    padding: 36px 40px;
+    margin: 40px 0;
+  }
+  .domino p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(24px, 3.2vw, 32px);
+    font-style: italic;
+    color: var(--text-light);
+    line-height: 1.35;
+    margin: 0;
+    max-width: none;
+  }
+  .domino p em { color: var(--gold); }
+
+  blockquote {
+    border-left: 2px solid var(--gold);
+    padding: 8px 0 8px 28px;
+    margin: 40px 0;
+  }
+  blockquote p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 2.8vw, 28px);
+    font-style: italic;
+    color: var(--gold-light);
+    line-height: 1.4;
+    margin: 0;
+    max-width: none;
+  }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    padding: 44px 44px;
+  }
+  @media (max-width: 600px) { .card { padding: 30px 24px; } }
+  .card .eyebrow { margin-bottom: 16px; }
+  .card p { font-size: 17px; color: var(--text-muted); margin-bottom: 20px; }
+  .card p:last-child { margin-bottom: 0; }
+  .card p strong { color: var(--text-light); font-weight: 500; }
+  .card p em { color: var(--gold-light); }
+
+  /* ===== FEATURES (What's inside) ===== */
+  .inside h2 {
+    font-size: clamp(30px, 4.4vw, 46px);
+    margin-bottom: 12px;
+  }
+  .inside .time {
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    margin-bottom: 48px;
+  }
+  .feature {
+    display: flex;
+    gap: 22px;
+    padding: 34px 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .feature:first-of-type { border-top: 1px solid var(--border-subtle); }
+  .feature:last-child { border-bottom: none; }
+  .feature-num {
+    flex-shrink: 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-style: italic;
+    color: var(--gold);
+    width: 40px;
+    padding-top: 4px;
+  }
+  .feature-body h3 { font-size: 26px; margin-bottom: 6px; color: var(--text-light); }
+  .feature-body .meta {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    margin-bottom: 14px;
+  }
+  .feature-body p { font-size: 16.5px; color: var(--text-muted); margin-bottom: 14px; max-width: 560px; }
+  .feature-body p:last-child { margin-bottom: 0; }
+  .feature-body p em { color: var(--gold-light); }
+  .q-callout {
+    font-family: 'Cormorant Garamond', serif !important;
+    font-size: 24px !important;
+    font-style: italic;
+    color: var(--gold-light) !important;
+    line-height: 1.4;
+  }
+
+  /* ===== PROMISE ===== */
+  .promise { text-align: center; }
+  .promise .eyebrow { margin-bottom: 28px; }
+  .promise p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(24px, 3.2vw, 32px);
+    line-height: 1.4;
+    color: var(--text-light);
+    max-width: 640px;
+    margin: 0 auto 26px;
+  }
+  .promise p strong { font-weight: 600; color: var(--gold-light); }
+  .promise .quiet-line {
+    font-family: 'Jost', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-muted);
+    max-width: 480px;
+    margin: 36px auto 0;
+  }
+
+  /* ===== CTA BAND ===== */
+  .cta-band {
+    text-align: center;
+    background:
+      radial-gradient(ellipse at center, rgba(200, 175, 120, 0.08) 0%, transparent 65%),
+      var(--bg-elevated);
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 90px 0;
+  }
+  .cta-band .price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(64px, 10vw, 96px);
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .cta-band .price-sub {
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    margin-bottom: 36px;
+  }
+  .cta-band .note {
+    font-size: 17px;
+    color: var(--text-muted);
+    max-width: 480px;
+    margin: 0 auto 24px;
+  }
+  .cta-band .sig {
+    margin-top: 44px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 21px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ===== PS ===== */
+  .ps .label {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 30px;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+  .ps .mini-cta { text-align: center; margin-top: 48px; }
+
+  footer {
+    text-align: center;
+    padding: 44px 24px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    border-top: 1px solid var(--border-subtle);
+  }
+  footer span { color: var(--gold); }
+
+  /* reveal */
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.on { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    #needle { animation: none !important; }
+    html { scroll-behavior: auto; }
+  }
+
+  /* dial needle: rises, snaps back, rises, settles at set-point */
+  @keyframes tryAndSnap {
+    0%   { transform: rotate(-62deg); }
+    18%  { transform: rotate(6deg); }
+    26%  { transform: rotate(-60deg); }
+    30%  { transform: rotate(-64deg); }
+    33%  { transform: rotate(-62deg); }
+    52%  { transform: rotate(10deg); }
+    60%  { transform: rotate(-60deg); }
+    64%  { transform: rotate(-64deg); }
+    67%  { transform: rotate(-62deg); }
+    100% { transform: rotate(-62deg); }
+  }
+  #needle {
+    transform-origin: 130px 128px;
+    transform: rotate(-62deg);
+    animation: tryAndSnap 5.2s ease-in-out .8s 1 both;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="container">
+    <p class="hero-brand">Creating Through Energy</p>
+
+    <div class="dial-wrap" aria-hidden="true">
+      <svg viewBox="0 0 260 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 26 128 A 104 104 0 0 1 234 128" stroke="#2A2A38" stroke-width="10" stroke-linecap="round"/>
+        <path d="M 130 24 A 104 104 0 0 1 234 128" stroke="#C8AF78" stroke-width="10" stroke-linecap="round" opacity=".9"/>
+        <g stroke="#8B7355" stroke-width="2.5" stroke-linecap="round">
+          <line x1="36" y1="120" x2="47" y2="115"/>
+          <line x1="56" y1="84"  x2="66" y2="91"/>
+          <line x1="92" y1="52"  x2="98" y2="62"/>
+          <line x1="130" y1="38" x2="130" y2="50"/>
+          <line x1="168" y1="52" x2="162" y2="62"/>
+          <line x1="204" y1="84" x2="194" y2="91"/>
+          <line x1="224" y1="120" x2="213" y2="115"/>
+        </g>
+        <circle cx="130" cy="30" r="6" fill="#D8C49A"/>
+        <g id="needle">
+          <line x1="130" y1="128" x2="130" y2="46" stroke="#F4F1E8" stroke-width="5" stroke-linecap="round"/>
+          <circle cx="130" cy="128" r="10" fill="#F4F1E8"/>
+          <circle cx="130" cy="128" r="4.5" fill="#0D0D14"/>
+        </g>
+      </svg>
+    </div>
+
+    <h1>Your income keeps returning to the same number. It's not a mindset problem — <em>it's a set-point.</em></h1>
+
+    <p class="hero-sub">In one sitting — about half an hour — find the number your body won't let you pass, understand why it set the thermostat there… and feel it move for the first time.</p>
+
+    <a class="cta" href="https://creatingthroughenergy.thrivecart.com/the-income-thermostat-reset/">Find My Set-Point — $27</a>
+    <span class="cta-meta">One sitting · ~35 minutes · Instant access</span>
+  </div>
+</header>
+
+<!-- ============ THE LETTER ============ -->
+<main>
+<section class="letter section-divider">
+  <div class="container-narrow">
+    <p class="eyebrow reveal">You already know the pattern</p>
+
+    <div class="reveal">
+      <p>The good month comes. The new client says yes. Money starts moving…</p>
+      <p>And something in you tightens.</p>
+      <p>Within a few weeks it's spent, discounted, or stalled — and you're right back at your usual number. Like a thermostat quietly clicking on, cooling the room back down to the temperature it was set to years ago.</p>
+      <p class="lead-line">Here's the part nobody in the personal development world will tell you:</p>
+    </div>
+
+    <div class="domino reveal">
+      <p>You cannot <em>believe</em> your way past a number your nervous system still codes as dangerous.</p>
+    </div>
+
+    <div class="reveal">
+      <p>Not with affirmations. Not with vision boards. Not with another journal.</p>
+      <p>I work with a woman I'll call D. Retired executive. Sharp as they come. She'd been through the big-name programs — some of them twice. Over a year in a mastermind. Months of tapping.</p>
+      <p>You know what she told me?</p>
+    </div>
+
+    <blockquote class="reveal">
+      <p>"Standing in front of a mirror saying stupid affirmations doesn't do a damn thing for me."</p>
+    </blockquote>
+
+    <div class="reveal">
+      <p>She wasn't lazy. She wasn't undisciplined. She'd done <strong>more</strong> work than almost anyone.</p>
+      <p>The problem was never her beliefs.</p>
+      <p>The problem was that her body had a set-point — installed decades ago, for very good reasons — and every time her life started to exceed it, her nervous system pulled the emergency brake.</p>
+      <p>That's the thermostat.</p>
+      <p>And you can't out-affirm a body that's holding its breath.</p>
+      <p class="lead-line">Which means something I need you to hear:</p>
+      <p><strong>It was never your fault.</strong></p>
+      <p>You weren't lazy. You weren't undisciplined. You weren't "blocking your blessings." You were handed a mind tool for a body problem — and then left to blame yourself when it didn't work.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKEPTIC ============ -->
+<section style="padding-top:0">
+  <div class="container-narrow reveal">
+    <div class="card">
+      <p class="eyebrow">The question you're asking right now</p>
+      <p>So you say, <em>"Ramon, that's a nice theory. But I've bought the money-block programs before. Why would this be different?"</em></p>
+      <p>Fair. Here's the difference.</p>
+      <p>Every one of those programs started with your <strong>thoughts</strong> — and hoped the body would follow.</p>
+      <p>It never does. The body outranks the mind. Every single time.</p>
+      <p>This starts with the body. Which is why it takes 35 minutes instead of 35 days… because you're not trying to convince anything. You're locating a switch and flipping it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT'S INSIDE ============ -->
+<section class="inside section-divider">
+  <div class="container-narrow">
+    <p class="eyebrow reveal">What's inside</p>
+    <h2 class="reveal">One sitting. Three <em>steps</em>.</h2>
+    <p class="time reveal">About 35 minutes, start to finish</p>
+
+    <div class="feature reveal">
+      <div class="feature-num">01</div>
+      <div class="feature-body">
+        <h3>The Wedge</h3>
+        <p class="meta">7-minute video</p>
+        <p>Seven minutes that finally answer the question you've been carrying for years: <em>"Why does this work for everyone but me?"</em> You'll walk out the other side knowing exactly why nothing stuck — and you'll stop blaming yourself for it. For most women, this is the first full exhale in a long time.</p>
+      </div>
+    </div>
+
+    <div class="feature reveal">
+      <div class="feature-num">02</div>
+      <div class="feature-body">
+        <h3>The Thermostat Diagnostic</h3>
+        <p class="meta">One page · ~10 minutes</p>
+        <p>Three questions. By the last one, you'll have a number — the exact figure your income keeps snapping back to — and you'll have caught the precise moment your body pulls the brake.</p>
+        <p>Here's the third question, so you can feel how deep one page goes:</p>
+        <p class="q-callout">"What did having more than enough cost someone in your family?"</p>
+        <p>Don't answer it yet. (Something in you already started, didn't it? That's the thermostat talking.)</p>
+      </div>
+    </div>
+
+    <div class="feature reveal">
+      <div class="feature-num">03</div>
+      <div class="feature-body">
+        <h3>The Safety Switch</h3>
+        <p class="meta">Guided somatic install · ~18 minutes</p>
+        <p>The part you can't get from a book. Eighteen minutes in, you'll feel something you may not have felt around money in decades: your body standing down. Not a calm you talked yourself into — the calm underneath the talking. That's the thermostat moving. That's the moment you're paying $27 for.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROMISE ============ -->
+<section class="promise section-divider">
+  <div class="container-narrow reveal">
+    <p class="eyebrow">The promise — as a moment, not a result</p>
+    <p>You know that moment when money starts flowing… and something in you tightens, and you find a way to send it back out the door before anyone notices you had it?</p>
+    <p><strong>By dinner tonight, you'll know exactly where that reaction lives, why your body put it there — and you'll have felt it loosen for the first time.</strong></p>
+    <p class="quiet-line">You've spent enough years knowing better. This is half an hour.</p>
+  </div>
+</section>
+
+<!-- ============ QUALIFIER ============ -->
+<section style="padding-top:0">
+  <div class="container-narrow reveal">
+    <div class="card">
+      <p class="eyebrow">Before you buy — one honest thing</p>
+      <p>If you're brand new to this work — if you haven't yet done the books, the programs, the journaling — this isn't your starting point. Truly. There are better first steps, and this will mean more to you later.</p>
+      <p>This is built for the woman who has done <strong>everything</strong>… and is still standing one step away from the life she can already see.</p>
+      <p>If that's you — you don't need more information. You need thirty-five minutes that start in the right place.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta-band">
+  <div class="container-narrow">
+    <p class="price reveal">$27</p>
+    <p class="price-sub reveal">One sitting · Instant access</p>
+    <p class="note reveal">I priced this so that saying yes wouldn't require a conversation with your nervous system. (That comes later — that's the whole point.)</p>
+    <p class="note reveal">If you'd like me to show you where your thermostat is set, I'd love to.</p>
+    <div class="reveal" style="margin-top:36px">
+      <a class="cta" href="https://creatingthroughenergy.thrivecart.com/the-income-thermostat-reset/">Find My Set-Point — $27</a>
+    </div>
+    <p class="sig reveal">Rooting for you.<br>Talk soon, Ramon</p>
+  </div>
+</section>
+
+<!-- ============ P.S. ============ -->
+<section class="ps prose">
+  <div class="container-narrow reveal">
+    <p class="label">P.S.</p>
+    <p>D.'s thermostat didn't move during a breakthrough seminar or a mountaintop meditation. It moved in her kitchen, over a jar of peanut butter — an ordinary moment where she watched herself respond from a completely different nervous system.</p>
+    <p>That's what this work looks like when it's real. Not fireworks. Just a Tuesday where the old reaction… doesn't show up.</p>
+    <p><strong>35 minutes. $27. Before dinner.</strong></p>
+    <div class="mini-cta">
+      <a class="cta" href="https://creatingthroughenergy.thrivecart.com/the-income-thermostat-reset/">Find My Set-Point — $27</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <span>Creating Through Energy</span> &nbsp;·&nbsp; Wealth from Safety &nbsp;·&nbsp; © 2026 Ramon Osa
+</footer>
+
+<script>
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+  }, { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
