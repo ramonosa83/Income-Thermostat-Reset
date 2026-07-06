@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Thermostat Diagnostic — Creating Through Energy</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-dark: #0D0D14;
+    --bg-card: #15151E;
+    --bg-elevated: #1C1C26;
+    --gold: #C8AF78;
+    --gold-deep: #8B7355;
+    --gold-light: #D8C49A;
+    --text-light: #F4F1E8;
+    --text-muted: #A8A39A;
+    --text-soft: #6B6B6B;
+    --border-subtle: rgba(200, 175, 120, 0.18);
+    --border-bright: rgba(200, 175, 120, 0.4);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Jost', -apple-system, BlinkMacSystemFont, sans-serif;
+    background:
+      radial-gradient(ellipse at top, rgba(200,175,120,0.08) 0%, transparent 55%),
+      var(--bg-dark);
+    color: var(--text-light);
+    font-weight: 300;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 680px; margin: 0 auto; padding: 56px 22px 80px; }
+
+  .brand {
+    text-align: center;
+    font-size: 11px; letter-spacing: 4px; color: var(--gold);
+    text-transform: uppercase; font-weight: 500; margin-bottom: 28px;
+  }
+  .brand::before, .brand::after {
+    content: ''; display: inline-block; width: 22px; height: 1px;
+    background: var(--gold); vertical-align: middle; margin: 0 12px;
+  }
+  h1 {
+    font-family: 'Cormorant Garamond', serif; font-weight: 500;
+    font-size: clamp(34px, 6vw, 46px); text-align: center; margin-bottom: 12px;
+  }
+  .tagline {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    text-align: center; color: var(--gold-light);
+    font-size: clamp(17px, 2.4vw, 20px); margin-bottom: 8px;
+  }
+  .instruction {
+    text-align: center; color: var(--text-muted); font-size: 15.5px;
+    max-width: 540px; margin: 18px auto 0;
+  }
+  .saved {
+    text-align: center; font-size: 12px; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--text-soft); margin-top: 14px;
+    min-height: 16px; transition: color .3s;
+  }
+  .saved.flash { color: var(--gold); }
+
+  .q {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    padding: 30px 28px;
+    margin-top: 30px;
+  }
+  .q-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 14px; }
+  .q-num {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 30px; color: var(--gold);
+  }
+  .q-label {
+    font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold-deep); font-weight: 500;
+  }
+  .q p { font-size: 16px; color: var(--text-muted); margin-bottom: 14px; }
+  .q p strong { color: var(--text-light); font-weight: 400; }
+  .q .big-q {
+    font-family: 'Cormorant Garamond', serif; font-size: 22px;
+    color: var(--text-light); line-height: 1.4; margin-bottom: 14px;
+  }
+  .q .hint {
+    font-size: 13.5px; font-style: italic; color: var(--text-soft);
+    margin: 12px 0 0;
+  }
+  input[type="text"], textarea {
+    width: 100%;
+    background: var(--bg-elevated);
+    border: 1px solid var(--gold-deep);
+    border-radius: 4px;
+    color: var(--text-light);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    padding: 13px 14px;
+    outline: none;
+    transition: border-color .2s;
+  }
+  input[type="text"]:focus, textarea:focus { border-color: var(--gold); }
+  textarea { min-height: 110px; resize: vertical; }
+  ::placeholder { color: var(--text-soft); }
+
+  .reading {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    padding: 32px 28px;
+    margin-top: 40px;
+  }
+  .reading .r-label {
+    font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold); font-weight: 500; margin-bottom: 16px;
+  }
+  .reading p { font-size: 15.5px; color: var(--text-muted); margin-bottom: 14px; }
+  .reading .r-head {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 19px; color: var(--gold-light); margin: 18px 0 4px;
+  }
+  .reading p:last-child { margin-bottom: 0; }
+
+  .actions { text-align: center; margin-top: 40px; }
+  .btn {
+    display: inline-block; cursor: pointer;
+    background: var(--gold); color: var(--bg-dark);
+    border: 1px solid var(--gold); border-radius: 3px;
+    font-family: 'Jost', sans-serif; font-size: 14px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 16px 38px;
+    transition: all .25s ease;
+  }
+  .btn:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 12px 36px rgba(200,175,120,.25); }
+  .copy-note {
+    font-size: 13.5px; color: var(--text-soft); margin-top: 14px;
+    max-width: 440px; margin-left: auto; margin-right: auto;
+  }
+  .closing {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    text-align: center; color: var(--gold-light);
+    font-size: clamp(18px, 2.6vw, 22px); margin-top: 48px;
+  }
+  footer {
+    text-align: center; padding: 26px 20px; margin-top: 60px;
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-soft); border-top: 1px solid var(--border-subtle);
+  }
+  footer span { color: var(--gold); }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <p class="brand">Creating Through Energy</p>
+  <h1>The Thermostat Diagnostic</h1>
+  <p class="tagline">Ten minutes. Three questions. First answers are true answers.</p>
+  <p class="instruction">One instruction before you start: answer with your body in the room. If a question makes something tighten, note <em>where</em>. That's data — the best data on this page.</p>
+  <p class="saved" id="savedNote"></p>
+
+  <!-- Q1 -->
+  <div class="q">
+    <div class="q-head"><span class="q-num">01</span><span class="q-label">The Number</span></div>
+    <p>Look back over the last few years. Not your best month. Not your worst. The number your income keeps <strong>returning to</strong> — the one it snaps back to after every spike, like a thermostat clicking on.</p>
+    <p class="big-q">My income keeps returning to:</p>
+    <input type="text" id="q1" placeholder="Write the number — be specific" autocomplete="off">
+    <p class="hint">If you're not sure, write the number that came to mind first. That was it. Business owners: use what you actually pay yourself, not revenue — the thermostat regulates what YOU receive.</p>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q">
+    <div class="q-head"><span class="q-num">02</span><span class="q-label">The Brake</span></div>
+    <p>Now imagine next month comes in meaningfully <strong>above</strong> that number. Not fantasy money — real, plausible, above your line. Sit with that picture for ten full seconds before you write.</p>
+    <p class="big-q">What just happened in your body? Where — throat, chest, stomach, shoulders, jaw?</p>
+    <textarea id="q2" placeholder="Tightening, bracing, heaviness, a held breath, a sudden urge to check your phone…"></textarea>
+    <p class="hint">Whatever you just felt — that's the brake. You just caught it in the act. And if you felt nothing at all — a blankness, a fog, "I can't even picture it" — write exactly that. Numbness is a brake too. It's the sneakiest one.</p>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q">
+    <div class="q-head"><span class="q-num">03</span><span class="q-label">The Installation</span></div>
+    <p>This is the deep one. Take your time.</p>
+    <p class="big-q">What did having &ldquo;more than enough&rdquo; cost someone in your family?</p>
+    <p>Who paid a price for money, success, or standing out — and what was the price? Resentment? A lawsuit? Being targeted, envied, isolated? A marriage? Their health? Who got punished for having, or punished for wanting?</p>
+    <textarea id="q3" placeholder="Who paid, and what was the price…"></textarea>
+    <p class="hint">If a specific person and a specific story surfaced before you finished reading the question — write that one. Your body brought it up for a reason.</p>
+  </div>
+
+  <!-- Reading your own answers -->
+  <div class="reading">
+    <p class="r-label">Reading Your Own Answers</p>
+    <p>Put the three together and you're looking at something almost nobody ever sees written down: <strong style="color:var(--text-light)">your set-point, your alarm system, and the event that installed it.</strong></p>
+    <p class="r-head">Question 1 is the setting.</p>
+    <p>Your system defends this number — above it AND below it, which is why bad months mysteriously recover too.</p>
+    <p class="r-head">Question 2 is the alarm.</p>
+    <p>That physical signature is what &ldquo;dangerous&rdquo; feels like in your body. When you feel it now, you'll know what it is — which changes your relationship to it forever.</p>
+    <p class="r-head">Question 3 is the installation.</p>
+    <p>Your thermostat wasn't set randomly. Someone paid a price for &ldquo;more,&rdquo; your body was in the room, and it decided: <em>not us. Never us.</em> It's been keeping that promise ever since — out of love, believe it or not.</p>
+    <p>One thing NOT to do with this page: don't argue with it. Don't affirm at it. The part that set the thermostat doesn't speak that language. It speaks the language of felt safety — which is exactly where we're going next.</p>
+  </div>
+
+  <div class="actions">
+    <button class="btn" id="copyBtn" type="button">Copy My Answers</button>
+    <p class="copy-note">Your answers save automatically on this device. The copy button puts all three on your clipboard — paste them anywhere you want to keep them.</p>
+  </div>
+
+  <p class="closing">Keep your number in mind. Bring it with you into the Safety Switch.</p>
+</div>
+
+<footer>
+  <span>Creating Through Energy</span> &nbsp;·&nbsp; The Income Thermostat Reset &nbsp;·&nbsp; Wealth from Safety
+</footer>
+
+<script>
+  const fields = ["q1", "q2", "q3"];
+  const KEY = "cte-thermostat-diagnostic";
+  const savedNote = document.getElementById("savedNote");
+
+  // load
+  try {
+    const data = JSON.parse(localStorage.getItem(KEY) || "{}");
+    fields.forEach(f => { if (data[f]) document.getElementById(f).value = data[f]; });
+    if (data.q1 || data.q2 || data.q3) savedNote.textContent = "Your saved answers are loaded \u2713";
+  } catch (e) {}
+
+  // autosave
+  let t;
+  fields.forEach(f => {
+    document.getElementById(f).addEventListener("input", () => {
+      clearTimeout(t);
+      t = setTimeout(() => {
+        const data = {};
+        fields.forEach(x => data[x] = document.getElementById(x).value);
+        try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) {}
+        savedNote.textContent = "Saved on this device \u2713";
+        savedNote.classList.add("flash");
+        setTimeout(() => savedNote.classList.remove("flash"), 900);
+      }, 500);
+    });
+  });
+
+  // copy
+  document.getElementById("copyBtn").addEventListener("click", async () => {
+    const v = f => (document.getElementById(f).value || "").trim() || "(not answered yet)";
+    const text =
+`MY THERMOSTAT DIAGNOSTIC — Creating Through Energy
+
+1. THE NUMBER — my income keeps returning to:
+${v("q1")}
+
+2. THE BRAKE — when money exceeds it, my body:
+${v("q2")}
+
+3. THE INSTALLATION — in my family, "more than enough" cost:
+${v("q3")}`;
+    try {
+      await navigator.clipboard.writeText(text);
+      const btn = document.getElementById("copyBtn");
+      const old = btn.textContent;
+      btn.textContent = "Copied \u2713";
+      setTimeout(() => btn.textContent = old, 1600);
+    } catch (e) {
+      // fallback
+      const ta = document.createElement("textarea");
+      ta.value = text; document.body.appendChild(ta); ta.select();
+      document.execCommand("copy"); document.body.removeChild(ta);
+      alert("Copied to clipboard.");
+    }
+  });
+</script>
+
+</body>
+</html>
