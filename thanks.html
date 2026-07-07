@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>You're In — The Income Thermostat Reset</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-dark: #0D0D14;
+    --bg-card: #15151E;
+    --gold: #C8AF78;
+    --gold-deep: #8B7355;
+    --gold-light: #D8C49A;
+    --text-light: #F4F1E8;
+    --text-muted: #A8A39A;
+    --text-soft: #6B6B6B;
+    --border-subtle: rgba(200, 175, 120, 0.18);
+    --border-bright: rgba(200, 175, 120, 0.4);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Jost', -apple-system, BlinkMacSystemFont, sans-serif;
+    background:
+      radial-gradient(ellipse at top, rgba(200,175,120,.10) 0%, transparent 55%),
+      var(--bg-dark);
+    color: var(--text-light);
+    font-weight: 300;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 720px; margin: 0 auto; padding: 52px 22px 70px; text-align: center; }
+
+  .brand {
+    font-size: 11px; letter-spacing: 4px; color: var(--gold);
+    text-transform: uppercase; font-weight: 500; margin-bottom: 34px;
+  }
+  .brand::before, .brand::after {
+    content: ''; display: inline-block; width: 22px; height: 1px;
+    background: var(--gold); vertical-align: middle; margin: 0 12px;
+  }
+  h1 {
+    font-family: 'Cormorant Garamond', serif; font-weight: 500;
+    font-size: clamp(40px, 7vw, 56px); line-height: 1.08; margin-bottom: 18px;
+  }
+  h1 em { font-style: italic; color: var(--gold); }
+  .login-line {
+    font-size: clamp(16px, 2.3vw, 18.5px); color: var(--text-muted);
+    max-width: 520px; margin: 0 auto;
+  }
+  .login-line strong { color: var(--gold-light); font-weight: 400; }
+  .spam-line {
+    font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--text-soft); margin-top: 14px;
+  }
+
+  .watch-kicker {
+    font-size: 11px; letter-spacing: 3.5px; text-transform: uppercase;
+    color: var(--gold); font-weight: 500; margin: 52px 0 18px;
+  }
+  .video-shell {
+    border: 1px solid var(--border-bright);
+    border-radius: 8px;
+    overflow: hidden;
+    background: #000;
+    max-width: 680px;
+    margin: 0 auto;
+    position: relative;
+    aspect-ratio: 16 / 9;
+  }
+  .video-shell iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+  /* ===== Blueprint offer ===== */
+  .bp {
+    background: var(--bg-card);
+    border: 1px solid var(--border-bright);
+    border-radius: 8px;
+    padding: 46px 28px 40px;
+    max-width: 640px;
+    margin: 48px auto 0;
+  }
+  .bp-print { width: 88px; height: 88px; margin: 0 auto 20px; display: block; }
+  .bp-kicker {
+    font-size: 11px; letter-spacing: 3.5px; text-transform: uppercase;
+    color: var(--gold); font-weight: 500; margin-bottom: 14px;
+  }
+  .bp h2 {
+    font-family: 'Cormorant Garamond', serif; font-weight: 500;
+    font-size: clamp(30px, 5vw, 36px); line-height: 1.12; margin-bottom: 20px;
+  }
+  .bp-body {
+    font-size: 15.5px; color: var(--text-muted); line-height: 1.65;
+    max-width: 480px; margin: 0 auto 8px;
+  }
+  .bp-body strong { color: var(--text-light); font-weight: 400; }
+  .bp-eyes {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 21px; color: var(--gold-light); margin: 16px 0 26px;
+  }
+  .bp-btn {
+    display: inline-block; background: var(--gold); color: var(--bg-dark) !important;
+    font-family: 'Jost', sans-serif; font-size: 14px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none !important;
+    padding: 17px 40px; border-radius: 3px; border: 1px solid var(--gold);
+    transition: all .25s ease;
+  }
+  .bp-btn:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 12px 36px rgba(200,175,120,.28); }
+  .bp-price {
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-soft); margin-top: 16px;
+  }
+  .bp-fallback {
+    font-size: 13px; color: var(--text-soft); line-height: 1.6;
+    max-width: 420px; margin: 14px auto 0;
+  }
+  .bp-fallback strong { color: var(--text-muted); font-weight: 400; }
+  .bp-bless {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 16.5px; color: var(--text-soft); margin-top: 30px;
+  }
+
+  footer {
+    text-align: center; padding: 26px 20px; margin-top: 64px;
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-soft); border-top: 1px solid var(--border-subtle);
+  }
+  footer span { color: var(--gold); }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <p class="brand">Creating Through Energy</p>
+
+  <h1>You're <em>in.</em></h1>
+  <p class="login-line">Your login details for <strong>The Income Thermostat Reset</strong> are on their way to the email you just entered. Give it a minute or two.</p>
+  <p class="spam-line">Not there in five minutes? Check spam &amp; promotions.</p>
+
+  <p class="watch-kicker">While you wait — a message from Ramon</p>
+  <div class="video-shell">
+    <iframe src="https://www.youtube-nocookie.com/embed/Ezk5Cf5Wnvo?rel=0&modestbranding=1&playsinline=1" title="A message from Ramon" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </div>
+
+  <!-- ===== THE BLUEPRINT OFFER ===== -->
+  <div class="bp">
+    <svg class="bp-print" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g fill="none" stroke-linecap="round">
+        <circle cx="60" cy="62" r="10" stroke="#D8C49A" stroke-width="3.5" stroke-dasharray="47 16" transform="rotate(-40 60 62)"/>
+        <circle cx="60" cy="62" r="19" stroke="#C8AF78" stroke-width="3.5" stroke-dasharray="80 40" transform="rotate(30 60 62)"/>
+        <circle cx="60" cy="62" r="28" stroke="#8B7355" stroke-width="3.5" stroke-dasharray="120 56" transform="rotate(-15 60 62)"/>
+        <circle cx="60" cy="62" r="37" stroke="#C8AF78" stroke-width="3.5" stroke-dasharray="150 83" transform="rotate(70 60 62)"/>
+        <circle cx="60" cy="62" r="46" stroke="#8B7355" stroke-width="3.5" stroke-dasharray="180 110" transform="rotate(-70 60 62)"/>
+        <circle cx="60" cy="62" r="55" stroke="#C8AF78" stroke-width="3.5" stroke-dasharray="210 136" transform="rotate(15 60 62)"/>
+        <circle cx="60" cy="62" r="3.5" fill="#F4F1E8" stroke="none"/>
+      </g>
+    </svg>
+
+    <p class="bp-kicker">Before you start the course</p>
+    <h2>The Safety Blueprint</h2>
+
+    <p class="bp-body">Inside the course, you're going to diagnose yourself. Three questions — your number, your brake, a glimpse of what installed it. It's powerful. <strong>And it's you, looking at you.</strong></p>
+    <p class="bp-body">The Blueprint is <strong>me, looking at you</strong>: I personally read your story and build you a custom written breakdown of your safety pattern — plus a personal video of me walking you through exactly what I see, and exactly what to do about it, in what order.</p>
+    <p class="bp-eyes">Your pattern is as specific as a fingerprint. This is my eyes on your wiring.</p>
+
+    <a class="bp-btn" href="mailto:ramonosa83@gmail.com?subject=SAFETY&body=Send%20me%20everything%20about%20the%20Safety%20Blueprint.">Email Me The Word &ldquo;Safety&rdquo;</a>
+    <p class="bp-price">$149 &nbsp;·&nbsp; I read every intake personally, so I take these in small batches</p>
+    <p class="bp-fallback">One tap opens your email with the word already filled in — or just write <strong>SAFETY</strong> to <strong>ramonosa83@gmail.com</strong> and I&rsquo;ll personally send you everything, usually the same day.</p>
+
+    <p class="bp-bless">And if not — perfect. The Reset is complete on its own. Your login&rsquo;s in your inbox: go find your number today.</p>
+  </div>
+</div>
+
+<footer>
+  <span>Creating Through Energy</span> &nbsp;·&nbsp; Wealth from Safety &nbsp;·&nbsp; © 2026 Ramon Osa
+</footer>
+
+</body>
+</html>
